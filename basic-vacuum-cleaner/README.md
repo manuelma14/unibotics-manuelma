@@ -9,10 +9,11 @@ Programa una aspiradora de gama baja para que limpie una casa movíendose pseudo
 
 [![[Unibotics] RoboticsAcademy - Basic Vacuum Cleaner - YouTube](https://i.ytimg.com/vi/qwBQ1B-05xU/maxresdefault.jpg)](https://www.youtube.com/watch?v=qwBQ1B-05xU "[Unibotics] RoboticsAcademy - Basic Vacuum Cleaner - YouTube")
 
-## Robot API
+## API
 - `import HAL` (Hardware Abstraction Layer). Funciones que envían y reciben información de y al hardware (Gazebo).
 - `import WebGUI` (Web Graphical User Interface). Debug e imágenes.
-- `HAL.setV(v)` y `HAL.setW(velocity)`. Establece la velocidad lineal y angular respectivamente.
+- `import random`.
+- `HAL.setV(v)` y `HAL.setW(w)`. Establece la velocidad lineal y angular respectivamente.
 - `HAL.getLaserData()`. Para obtener información del sensor láser, que contiene la siguiente información:
 > [!IMPORTANT]
 > ``` python
@@ -26,4 +27,37 @@ Programa una aspiradora de gama baja para que limpie una casa movíendose pseudo
 > }
 > ```
 > Para esta práctica usaremos `HAL.getLaserData().values[]`.
+
+> [!WARNING]
+> Durante la ejecución será importante comprobar que el array de valores **no se encuentra vacío** mediante una comprobación de su longitud con `len()`.
+
 ---
+
+## Desarrollo
+> [!NOTE]
+> Usaremos una lectura en el rango de 60-120º **mediante un for** de la siguiente forma:
+> <p align="center">
+>   <img src="https://github.com/manuelma14/unibotics-manuelma/blob/main/basic-vacuum-cleaner/img/1000109229.png" width="250">
+> </p>
+
+Implementaremos una máquina de estados (FSM) con **tres estados: AVANZAR, RETROCEDER, GIRAR**. Seguirán la siguiente secuencia:
+<p align="center">
+  <img src="https://github.com/manuelma14/unibotics-manuelma/blob/main/basic-vacuum-cleaner/img/1000109230.png" width="250">
+</p>
+
+El robot avanza de forma continua hasta que el sensor láser detecta un obstáculo en su trayectoria. En ese momento, transita al estado **RETROCEDER**, durante el cual se desplaza hacia atrás durante un número aleatorio de ciclos comprendido entre 40 y 80.
+
+Una vez finalizado el retroceso, el robot pasa al estado **GIRAR**. En este estado, mediante una selección aleatoria, determina la dirección del giro —izquierda o derecha— y establece aleatoriamente su duración, entre 50 y 150 ciclos. Tras completar el giro, el robot vuelve al estado **AVANZAR**, repitiendo este comportamiento de forma iterativa.
+
+---
+## Resultado
+<p align="center">
+  <img src="https://github.com/manuelma14/unibotics-manuelma/blob/main/basic-vacuum-cleaner/img/Captura%20desde%202026-10-04%2018-46-26.png" width="700">
+</p>
+Vídeo de la solución:
+
+[![P1. Navegación pseudoaleatoria con FSM en una aspiradora de gama baja - YouTube](https://i.ytimg.com/vi/h5e498e6fZo/maxresdefault.jpg)](https://www.youtube.com/watch?v=h5e498e6fZo "P1. Navegación pseudoaleatoria con FSM en una aspiradora de gama baja - YouTube")
+## Resultado
+> <p align="center">
+>   <img src="https://github.com/manuelma14/unibotics-manuelma/blob/main/basic-vacuum-cleaner/img/Captura%20desde%202026-10-04%2018-46-26.png" width="700">
+> </p>
