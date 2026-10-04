@@ -57,7 +57,3 @@ Una vez finalizado el retroceso, el robot pasa al estado **GIRAR**. En este esta
 Vídeo de la solución:
 
 [![P1. Navegación pseudoaleatoria con FSM en una aspiradora de gama baja - YouTube](https://i.ytimg.com/vi/h5e498e6fZo/maxresdefault.jpg)](https://www.youtube.com/watch?v=h5e498e6fZo "P1. Navegación pseudoaleatoria con FSM en una aspiradora de gama baja - YouTube")
-## Resultado
-> <p align="center">
->   <img src="https://github.com/manuelma14/unibotics-manuelma/blob/main/basic-vacuum-cleaner/img/Captura%20desde%202026-10-04%2018-46-26.png" width="700">
-> </p>
