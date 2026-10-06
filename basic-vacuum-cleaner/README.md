@@ -40,14 +40,16 @@ Programa una aspiradora de gama baja para que limpie una casa movíendose pseudo
 >   <img src="https://github.com/manuelma14/unibotics-manuelma/blob/main/basic-vacuum-cleaner/img/1000109229.png" width="250">
 > </p>
 
-Implementaremos una máquina de estados (FSM) con **tres estados: AVANZAR, RETROCEDER, GIRAR**. Seguirán la siguiente secuencia:
+Implementaremos una máquina de estados (FSM) con **tres estados: AVANZANDO, RETROCEDIENDO, GIRANDO**. Seguirán la siguiente secuencia:
 <p align="center">
   <img src="https://github.com/manuelma14/unibotics-manuelma/blob/main/basic-vacuum-cleaner/img/1000109230.png" width="250">
 </p>
 
-El robot avanza de forma continua hasta que el sensor láser detecta un obstáculo en su trayectoria. En ese momento, transita al estado **RETROCEDER**, durante el cual se desplaza hacia atrás durante un número aleatorio de ciclos comprendido entre 40 y 80.
+El robot comienza en el estado **AVANZANDO**, por lo que avanza de forma continua hasta que el sensor láser detecta un obstáculo en su trayectoria. En ese momento, transita al estado **RETROCEDIENDO**, durante el cual se desplaza hacia atrás durante un número aleatorio de ciclos comprendido entre 40 y 80.
 
-Una vez finalizado el retroceso, el robot pasa al estado **GIRAR**. En este estado, mediante una selección aleatoria, determina la dirección del giro —izquierda o derecha— y establece aleatoriamente su duración, entre 50 y 150 ciclos. Tras completar el giro, el robot vuelve al estado **AVANZAR**, repitiendo este comportamiento de forma iterativa.
+Una vez finalizado el retroceso, el robot pasa al estado **GIRANDO**. En este estado, mediante una selección aleatoria, determina la dirección del giro (izquierda o derecha) y establece aleatoriamente su duración, entre 50 y 150 ciclos. Tras completar el giro, el robot vuelve al estado **AVANZANDO**, repitiendo este comportamiento de forma iterativa.
+
+La duración de los estados **RETROCEDIENDO** y **GIRANDO** se controla mediante un contador de ciclos. De esta forma, se evita utilizar `sleep` y se mantiene la reactividad del bucle principal. La aleatoriedad se consigue mediante `random`, tanto para determinar la **duración** de los movimientos como para seleccionar la **dirección** del giro.
 
 ### Visual del movimiento:
 [![P1. Navegación pseudoaleatoria con FSM en una aspiradora de gama baja - YouTube](https://i.ytimg.com/vi/h5e498e6fZo/maxresdefault.jpg)](https://www.youtube.com/watch?v=h5e498e6fZo "P1. Navegación pseudoaleatoria con FSM en una aspiradora de gama baja - YouTube")
@@ -65,4 +67,9 @@ Al fin y al cabo, estamos tratando con una ejecución pseudoaleatoria, y cada ej
 
 En otro orden de cosas, el uso de la espiral aumenta considerablemente el porcentaje inicial, es decir, es más rápido, pero a la larga recorre muchos espacios innecesarios, por lo que he decidido dejar el sistema de manera sencilla con los 3 estados.
 
+## Conclusión
+
+Finalmente, la solución implementada cumple con el objetivo de realizar una navegación pseudoaleatoria mediante una máquina de estados sencilla. El uso del sensor láser permite detectar obstáculos y modificar el comportamiento del robot de **forma reactiva**, mientras que la aleatoriedad en los tiempos de retroceso y giro evita que el robot siga siempre las mismas trayectorias.
+
+Aunque la estrategia de la espiral puede conseguir una limpieza inicial más rápida, la solución basada en los tres estados resulta **más sencilla y suficiente** para conseguir, con el tiempo, una **cobertura elevada del entorno**.
 
