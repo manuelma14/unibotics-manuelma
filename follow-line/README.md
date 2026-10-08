@@ -31,6 +31,7 @@ Una vez controlada la velocidad angular, realizaremos el control de la **velocid
 > mask = cv2.bitwise_or(mask1, mask2) # combina ambas
 > moments = cv2.moments(mask) # para el centroide
 > ```
+> En cuanto a los momentos, se puede seguir las indicaciones de: https://learnopencv.com/find-center-of-blob-centroid-using-opencv-cpp-python/
 
 ## Resultado
 ### Vídeo de la solución:
