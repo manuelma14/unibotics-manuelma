@@ -7,6 +7,7 @@ Programa un coche de Fórmula1, equipado con una cámara frontal, para que recor
 - Cuantas menos oscilaciones tenga mejor, y conviene que sea robusto **si en algún momento pierde la línea**.
 
 La aplicación robótica se implementará como un bucle infinito. Cada iteración incluirá las instrucciones para materializar el procesamiento de la imagen y para la toma de decisiones sobre los dos actuadores V y W. 
+[![[Unibotics] RoboticsAcademy - Follow Line - YouTube](https://i.ytimg.com/vi/HRZC1-tGW-s/maxresdefault.jpg)](https://www.youtube.com/watch?v=HRZC1-tGW-s&t=1s "[Unibotics] RoboticsAcademy - Follow Line - YouTube")
 ## API
 - Básicos: `import WebGUI, import HAL, import Frequency`.
 - OpenCV: `import cv2`. Procesamiento de imágenes.
