@@ -48,6 +48,15 @@ Una vez controlada la velocidad angular, realizaremos el control de la **velocid
 ### Vídeo de la solución:
 [![P2 - Follow Line - YouTube](https://res.cloudinary.com/marcomontalbano/image/upload/v1792080831/video_to_markdown/images/youtube--J6l0p0m2j0o-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=J6l0p0m2j0o "P2 - Follow Line - YouTube")
 
+<p align="center">
+  <img src="https://github.com/manuelma14/unibotics-manuelma/blob/main/follow-line/img/Captura%20desde%202026-10-15%2018-51-00.png?raw=true" alt="" width="650" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/manuelma14/unibotics-manuelma/blob/main/follow-line/img/Captura%20desde%202026-10-15%2018-54-45.png?raw=true" alt="" width="650" />
+</p>
+
+
 ## Conclusión
 El rendimiento de la simulación depende en buena medida del ordenador en el que se ejecuta. En mi caso he observado ejecuciones con muchas oscilaciones y otras prácticamente perfectas con exactamente el mismo código, un efecto que se nota sobre todo al grabar, ya que la grabación consume recursos y altera la frecuencia real del bucle de control, que está diseñado para funcionar a 50 Hz.
 
