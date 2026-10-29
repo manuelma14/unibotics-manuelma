@@ -32,9 +32,21 @@ Cada lectura genera un vector repulsivo que:
 - Tiene un módulo **inversamente proporcional** a la distancia (`1/d`), de modo que cuanto más cerca está el obstáculo, más repele.
 - Se ignora si la lectura es demasiado cercana (`< 0.05 m`) o demasiado lejana (`> 4.5 m`), porque no es relevante para la navegación.
 
+> [!NOTE]
+> La magnitud de la fuerza repulsiva de cada lectura del láser es inversamente proporcional a la distancia (1/d), por lo que un obstáculo tiene mucha más influencia cuanto más cerca está:
+>
+> | Distancia al obstáculo (d) | Magnitud repulsiva (1/d) |
+> |:---:|:---:|
+> | 4.00 m | 0.25 |
+> | 1.00 m | 1.00 |
+> | 0.25 m | 4.00 |
+> | 0.10 m | 10.00 |
+>
+> Una lectura a 0.10 m aporta **40 veces más repulsión** que una a 4 m, así que un obstáculo cercano domina la suma aunque haya muchas lecturas lejanas.
+
 Los 180 vectores se suman en un único vector repulsivo.
 
-> [!NOTE]
+> [!IMPORTANT]
 > Como indica la teoría, el vector repulsivo suele apuntar casi siempre hacia atrás, porque hay **"paredes" a ambos lados**, y sumado directamente al atractivo daría un resultado poco útil. Para evitarlo, el vector repulsivo **solo se tiene en cuenta** cuando su módulo supera un **umbral ajustado empíricamente (45)**. Si no lo supera, **se descarta** y el coche se guía solo por el **vector atractivo**. Cuando lo supera, se normaliza igual que el atractivo. Este comportamiento se podrá observar en el vídeo donde al inicio el vector atractivo es superpuesto por el vector resultante, ya que **no existe un vector repulsivo** (`0, 0`) debido a este ajuste.
 
 ### 3. Vector resultante
@@ -68,7 +80,9 @@ Por último, en cada iteración se visualizan los tres vectores (atractivo, repu
 
 ## Resultado
 ### Vídeo de la solución:
+[![P3 - Navegación local esquivando obstáculos con algoritmo VFF - YouTube](https://res.cloudinary.com/marcomontalbano/image/upload/v1793303990/video_to_markdown/images/youtube--hOtptHaE51I-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=hOtptHaE51I "P3 - Navegación local esquivando obstáculos con algoritmo VFF - YouTube")
 
+El código de la entrega corresponde con la primera ejecución mostrada en el video, las otras 3 son previas al ajuste final, aunque también cumplen el circuito sin colisionar, pero quizás con una oscilación más notable.
 
 ## Conclusión
 La solución completa el circuito en aproximadamente **2 minutos** sin colisiones, esquivando los coches obstáculo y manteniéndose alejado de las "paredes". Al frenar de forma natural cuando la repulsión se opone a la atracción y acelerar en tramos despejados, el coche adapta su velocidad al entorno sin necesidad de un controlador específico para V.
