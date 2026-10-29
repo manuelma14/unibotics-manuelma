@@ -9,6 +9,7 @@ Programa un coche de Fórmula1, equipado con un **sensor láser** y un **sensor 
 
 La aplicación robótica se implementará como un bucle infinito. Cada iteración incluirá las instrucciones para materializar el procesamiento del sensor laser, las fuerzas repulsivas, la fuerza atractiva, su combinación y su traducción a decisiones sobre los dos actuadores V y W. 
 
+[![[Unibotics] RoboticsAcademy - ObstacleAvoidance - YouTube](https://res.cloudinary.com/marcomontalbano/image/upload/v1793302242/video_to_markdown/images/youtube--8DiCRFsrxUg-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=8DiCRFsrxUg&t=1s "[Unibotics] RoboticsAcademy - ObstacleAvoidance - YouTube")
 
 ## API
 - Básicos: `import WebGUI, import HAL, import Frequency`.
