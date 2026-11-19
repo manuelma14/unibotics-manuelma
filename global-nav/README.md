@@ -89,6 +89,8 @@ Con cada punto se calcula el **error angular** entre hacia dónde quiere ir el c
 [![P4: Navegación global con algoritmo GPP, plan como recurso - YouTube](https://res.cloudinary.com/marcomontalbano/image/upload/v1795085187/video_to_markdown/images/youtube--KrqzdTbT2D8-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=KrqzdTbT2D8 "P4: Navegación global con algoritmo GPP, plan como recurso - YouTube")
 
 En el vídeo se marcan varios destinos seguidos en distintos puntos de la ciudad. Para cada uno se ve cómo se propaga la onda, el campo resultante y el camino dibujado, y cómo el coche llega al destino, se detiene y espera al siguiente.
+### Vídeo caso concreto:
+[![P4: Caso concreto, navegación global en un pasillo aislado - YouTube](https://res.cloudinary.com/marcomontalbano/image/upload/v1795087333/video_to_markdown/images/youtube--piJPaN9etpY-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=piJPaN9etpY "P4: Caso concreto, navegación global en un pasillo aislado - YouTube")
 
 ## Conclusión
 La solución lleva el taxi hasta el destino marcado por el camino más corto **por el centro de las calles**, sin chocar con las paredes, y queda a la espera de un nuevo destino al llegar. Gracias al punto lejano del gradiente, el coche reduce la velocidad antes de las curvas y acelera en las rectas, y gracias al frenado progresivo se detiene sobre el punto marcado.
