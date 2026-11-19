@@ -96,8 +96,11 @@ En el vídeo se marcan varios destinos seguidos en distintos puntos de la ciudad
 ## Conclusión
 La solución lleva el taxi hasta el destino marcado por el camino más corto **por el centro de las calles**, sin chocar con las paredes, y queda a la espera de un nuevo destino al llegar. Gracias al punto lejano del gradiente, el coche reduce la velocidad antes de las curvas y acelera en las rectas, y gracias al frenado progresivo se detiene sobre el punto marcado.
  
+
 La parte más delicada fue la **combinación de los dos subcampos**: una penalización demasiado débil hace que el camino corte esquinas, y una demasiado fuerte crea mínimos locales donde el coche se queda atascado. Incluir la penalización en el coste de la propagación resolvió ambos problemas, siempre que sea pequeña para no cerrar los pasillos estrechos.
  
+
 El ajuste de parámetros (radio y paso de la penalización, número de pasos de los dos puntos del gradiente y multiplicadores de V y W) se hizo de forma **empírica**.
  
+
 Como limitación, la propagación de la onda se recalcula entera cada vez que se marca un destino, lo que hace que el coche tarde un momento en arrancar, y los parámetros están ajustados para este mapa concreto. En una ciudad con calles de otra anchura habría que reajustar sobre todo el radio de la penalización.
