@@ -1,9 +1,13 @@
 # Navegación global de un taxi autónomo con Gradient Path Planning (GPP)
 ## Realizado por Manuel Martínez Arranz (m.martineza.2024@alumnos.urjc.es)
 ## Enunciado
-Programa un coche autónomo, equipado con un sensor GPS y un mapa de la ciudad, para que ejerza de taxi autónomo siendo capaz de planificar su navegación desde el lugar en el que se encuentra hasta otro punto de la ciudad como destino, utilizando el algoritmo de Gradient Path Planning. Este algoritmo es un ejemplo de plan como recurso, proporcionando un campo escalar que el robot puede emplear en cualquier momento para pedir consejo de hacia dónde moverse para navegar hacia el destino. El campo será la suma de dos componentes, el subcampo de propagación a destino y el subcampo de penalización por cercanía a obstáculos. Además de la planificación utilizando el mapa la aplicación robótica deberá pilotar el coche siguiendo el gradiente de ese campo, gobernando reactivamente la velocidad lineal del coche (V) y la velocidad angular (W) en cada iteración. El pilotaje se implementará como un bucle reactivo. Idealmente, una vez alcanzado un destino remoto, el coche autónomo esperará un nuevo destino que marque el usuario humano picando en otro punto del mapa de la ciudad.
+Programa un coche autónomo, equipado con un sensor GPS y un mapa de la ciudad, para que ejerza de taxi autónomo siendo capaz de planificar su navegación desde el lugar en el que se encuentra hasta otro punto de la ciudad como destino, utilizando el algoritmo de Gradient Path Planning. 
+- Este algoritmo es un ejemplo de plan como recurso, proporcionando un campo escalar que el robot puede emplear en cualquier momento para pedir consejo de hacia dónde moverse para navegar hacia el destino.
+- El campo será la suma de dos componentes, el subcampo de propagación a destino y el subcampo de penalización por cercanía a obstáculos.
+- Además de la planificación utilizando el mapa la aplicación robótica deberá pilotar el coche siguiendo el gradiente de ese campo, gobernando reactivamente la velocidad lineal del coche (V) y la velocidad angular (W) en cada iteración. El pilotaje se implementará como un bucle reactivo.
+- Idealmente, una vez alcanzado un destino remoto, el coche autónomo esperará un nuevo destino que marque el usuario humano picando en otro punto del mapa de la ciudad.
 
-### video
+[![[Unibotics] RoboticsAcademy - Global Navigation - YouTube](https://res.cloudinary.com/marcomontalbano/image/upload/v1795084602/video_to_markdown/images/youtube--FZ8bP_VW1AA-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=FZ8bP_VW1AA&t=1s "[Unibotics] RoboticsAcademy - Global Navigation - YouTube")
 
 ## API
 - Básicos: `import WebGUI, import HAL, import Frequency`.
@@ -82,6 +86,7 @@ Con cada punto se calcula el **error angular** entre hacia dónde quiere ir el c
 
 ## Resultado
 ### Vídeo de la solución:
+[![P4: Navegación global con algoritmo GPP, plan como recurso - YouTube](https://res.cloudinary.com/marcomontalbano/image/upload/v1795085187/video_to_markdown/images/youtube--KrqzdTbT2D8-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=KrqzdTbT2D8 "P4: Navegación global con algoritmo GPP, plan como recurso - YouTube")
 
 En el vídeo se marcan varios destinos seguidos en distintos puntos de la ciudad. Para cada uno se ve cómo se propaga la onda, el campo resultante y el camino dibujado, y cómo el coche llega al destino, se detiene y espera al siguiente.
 
