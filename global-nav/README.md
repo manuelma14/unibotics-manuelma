@@ -31,19 +31,16 @@ Antes de planificar, y **una sola vez** al principio (solo depende del mapa), se
 - A partir de `radio` celdas de la pared, la penalización es 0.
 
 > [!NOTE]
-> Con `radio = 6` y `paso = 2`, la penalización según la distancia a la pared es:
+> Con `radio = 3` y `paso = 1`, la penalización según la distancia a la pared es:
 >
 > | Distancia a la pared (celdas) | Penalización |
 > |:---:|:---:|
-> | 1 | 12 |
-> | 2 | 10 |
-> | 3 | 8 |
-> | 4 | 6 |
-> | 5 | 4 |
-> | 6 | 2 |
-> | ≥ 7 | 0 |
+> | 1 | 3 |
+> | 2 | 2 |
+> | 3 | 1 |
+> | ≥ 4 | 0 |
 >
-> Las calles miden unas 14 celdas de ancho, así que el centro de la calle queda sin penalización y el coche tiende a circular por él.
+> Se eligió una penalización **pequeña** a propósito. Con valores mayores (por ejemplo `radio = 6`, `paso = 2`) todas las celdas de un pasillo estrecho quedan muy penalizadas, la onda prefiere rodearlo y el camino no entra en él.
 
 ### 3. Subcampo de propagación a destino
 La propagación es un **frente de onda** que sale desde el destino (valor 0) y se expande ola a ola por la carretera. Cada vez que la onda pasa de una celda a una vecina suma su coste:
