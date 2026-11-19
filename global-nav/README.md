@@ -51,14 +51,19 @@ Si a una celda que ya tenía valor le llega uno más pequeño, se actualiza y vu
 
 > [!IMPORTANT]
 > En una primera versión, el campo era la suma directa de la propagación y la penalización. Con una penalización fuerte (que suba más de 1 por celda) aparecían **mínimos locales** en las esquinas interiores de los cruces: el coche bajaba por el gradiente y se quedaba atascado antes del destino. Con una penalización suave no había mínimos, pero el camino **cortaba las esquinas** pegado a la pared y el coche rozaba con ella.
+>
+> La solución fue que la onda **avance más despacio cerca de las paredes**: al coste de cada paso se le suma la penalización de la celda a la que llega (`coste + penalizacion[nf][nc]`). Así el camino más barato pasa por el centro de la calle y no aparecen mínimos locales.
 
 ### 4. Campo final
-El campo que consulta el coche es la **suma de los dos subcampos**, como indica el enunciado: `suma = propagación + penalización`
-
+El campo que consulta el coche es la **suma de los dos subcampos**, como indica el enunciado. Esa suma no se hace al final, sino **dentro de la propagación**: en cada paso de la onda se acumula la distancia y la penalización de la celda, así que el valor de cada celda ya es propagación + penalización.
+ 
+> [!IMPORTANT]
+> Sumar la penalización otra vez al final (`suma = propagación + penalización`) crea **mínimos locales a la entrada de las calles estrechas**: dentro de un pasillo estrecho todas las celdas están penalizadas, de modo que la celda de fuera queda más baja que la de dentro y el coche se queda en la puerta sin entrar.
+ 
 Las celdas a las que no ha llegado la onda (paredes o zonas lejanas) se marcan con un valor muy alto (`SIN_VALOR = 10000`), y el destino se fuerza a **0** para asegurar que siempre es el punto más bajo del campo, aunque se haya picado cerca del bordillo.
-
+ 
 El campo se muestra con `WebGUI.showNumpy()` (blanco cerca del destino, negro lejos o sin valor) y, bajando el gradiente paso a paso desde el coche hasta el destino, se dibuja el camino resultante con `WebGUI.showPath()`. Este camino es **solo visual**: el coche no lo sigue, sino que consulta el campo en cada iteración.
-
+ 
 ### 5. Pilotaje siguiendo el gradiente
 En cada iteración del bucle (a 50 Hz) se localiza la celda del coche y se baja por el gradiente (en cada paso se elige el vecino con menor valor) para obtener **dos objetivos locales**:
 - **Punto cercano (5 pasos):** marca hacia dónde girar.
@@ -70,7 +75,6 @@ Con cada punto se calcula el **error angular** entre hacia dónde quiere ir el c
 
 ### 6. Llegada al destino y nuevo destino
 - En los **últimos 8 m** el coche deja de apuntar al centro de la celda y apunta directamente al punto exacto que marcó el usuario, para que no dé bandazos al llegar.
-- La velocidad nunca supera la distancia que queda hasta el destino (`V ≤ dist`), de modo que el coche **frena progresivamente** al acercarse.
 - Cuando está a menos de **1.5 m**, se detiene (`V = 0`, `W = 0`) y queda a la espera de que el usuario pique un nuevo destino en el mapa, momento en el que se vuelve a calcular el campo.
 
 > [!TIP]
@@ -91,10 +95,9 @@ En el vídeo se marcan varios destinos seguidos en distintos puntos de la ciudad
 
 ## Conclusión
 La solución lleva el taxi hasta el destino marcado por el camino más corto **por el centro de las calles**, sin chocar con las paredes, y queda a la espera de un nuevo destino al llegar. Gracias al punto lejano del gradiente, el coche reduce la velocidad antes de las curvas y acelera en las rectas, y gracias al frenado progresivo se detiene sobre el punto marcado.
-
-La parte más delicada fue la **combinación de los dos subcampos**: una penalización demasiado débil hace que el camino corte esquinas, y una demasiado fuerte crea mínimos locales donde el coche se queda atascado. Incluir la penalización en el coste de la propagación resolvió ambos problemas.
-
+ 
+La parte más delicada fue la **combinación de los dos subcampos**: una penalización demasiado débil hace que el camino corte esquinas, y una demasiado fuerte crea mínimos locales donde el coche se queda atascado. Incluir la penalización en el coste de la propagación resolvió ambos problemas, siempre que sea pequeña para no cerrar los pasillos estrechos.
+ 
 El ajuste de parámetros (radio y paso de la penalización, número de pasos de los dos puntos del gradiente y multiplicadores de V y W) se hizo de forma **empírica**.
-
+ 
 Como limitación, la propagación de la onda se recalcula entera cada vez que se marca un destino, lo que hace que el coche tarde un momento en arrancar, y los parámetros están ajustados para este mapa concreto. En una ciudad con calles de otra anchura habría que reajustar sobre todo el radio de la penalización.
-
